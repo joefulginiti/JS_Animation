@@ -1,3 +1,10 @@
+window.console = window.console || function(t) {};
+
+if (document.location.search.match(/type=embed/gi)) {
+    window.parent.postMessage("resize", "*");
+  }
+
+  
 function scrollTrigger(selector, options = {}){
     let els = document.querySelectorAll(selector)
     els = Array.from(els)

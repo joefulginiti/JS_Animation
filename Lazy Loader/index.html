@@ -1,0 +1,243 @@
+<html lang="en"><head>
+
+    <meta charset="UTF-8">
+    <title>Lazyload Animation</title>
+    
+    
+  <style>
+  html {
+    font-size: 16px;
+    box-sizing: border-box;
+    color: #ffe6e6;
+    font-family: "Helvetica", "Arial", sans-serif;
+  }
+  
+  body {
+    margin: 3rem;
+    background: linear-gradient(212deg, #ff19df 0%, #00fff4 100%);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  
+  section {
+    display: grid;
+    grid-template-rows: repeat(5, 1fr);
+  }
+  
+  p {
+    margin: 0;
+    padding: 0;
+    line-height: 1.5rem;
+  }
+  
+  h1 {
+    font-size: 4rem;
+  }
+  
+  h2 {
+    font-size: 2.5rem;
+  }
+  
+  h3 {
+    font-size: 3rem;
+    color: #0066b3;
+    font-family: "frutiger", "arial", sans-serif;
+    margin: 0;
+    padding: 0 0 0 0;
+  }
+  
+  .intro {
+    width: 600px;
+    margin: 0 0 5rem 0;
+  }
+  
+  .teaser {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: no-wrap;
+    justify-content: flex-start;
+    align-items: stretch;
+    width: 900px;
+    background: linear-gradient(175deg, #ffccee 0%, white 100%);
+    padding: 2rem;
+    margin: 0 0 4rem 0;
+    opacity: 0;
+    transform: scale(1.5);
+    transition: all 600ms cubic-bezier(0.62, 0.11, 0.83, 1.5);
+    clip-path: polygon(0% 0%, 100% 0%, 100% 100%, 0 100%, 0 55%, 10px 53%, 10px 47%, 0 45%);
+  }
+  .teaser img {
+    width: 300px;
+    height: 300px;
+    flex-shrink: 1;
+  }
+  
+  .teaser-content {
+    margin: 0;
+    padding: 0 0 0 2rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+  }
+  .teaser-content h3 {
+    align-self: center;
+    color: #1a0000;
+  }
+  .teaser-content p {
+    font-size: 1.5rem;
+    line-height: 1.5em;
+    color: #1a0000;
+  }
+  .teaser-content .link {
+    align-self: center;
+    justify-self: flex-end;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    color: #f60;
+    padding: 0.5rem 1rem 0.5rem 1.7rem;
+    background-color: #4d0040;
+  }
+  .teaser-content .link p {
+    line-height: 1em;
+    color: white;
+  }
+  .teaser-content .link svg {
+    height: 3rem;
+    width: 3rem;
+    fill: white;
+  }
+  </style>
+  
+    <script>
+    window.console = window.console || function(t) {};
+  </script>
+  
+    
+    
+    <script>
+    if (document.location.search.match(/type=embed/gi)) {
+      window.parent.postMessage("resize", "*");
+    }
+  </script>
+  
+  
+  </head>
+  
+  <body translate="no">
+    <h1>Lazy-Loading Animation</h1>
+  <h2>IntersectionObserver &amp; Animation</h2>
+  <p class="intro">Der intersectionobserver überwacht das Eintreten der Elemente in den Viewport. Er sollte zunächst etwa 100px vor dem Viewport die Bilder aus einem data-Attribut laden und dann, wenn der Teaser den Viewport erreicht hat (ca. 75% im Viewport), das Erscheinen animieren (opacity, transform).</p>
+  
+  <section id="scroller">
+    
+    <div class="teaser" id="lazy">
+      
+      <img src="https://www.fillmurray.com/300/300" data-src="https://www.fillmurray.com/300/300" style="transform: scale(1);">
+      <div class="teaser-content">
+        
+        <h3>Lorem Ipsum</h3>
+        <p>Lorem Ipsum is the single greatest threat. We are not - we are not keeping up with other websites. Lorem Ipsum best not make any more threats to your website.</p>
+        <button class="link">
+          <p>Lorem now</p>
+          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path d="M10 6L8.59 7.41 13.17 12l-4.58 4.59L10 18l6-6z"></path><path d="M0 0h24v24H0z" fill="none"></path></svg>
+        </button>
+      </div>
+    </div>
+    <div class="teaser" id="lazy">
+      
+      <img src="https://www.fillmurray.com/3/3" data-src="https://www.fillmurray.com/301/300">
+      <div class="teaser-content">
+        
+        <h3>sed inquitur</h3>
+        <p>Lorem Ipsum is the single greatest threat. We are not - we are not keeping up with other websites. Lorem Ipsum best not make any more threats to your website.</p>
+        <div class="link">
+          <p>really! lorem!</p>
+          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path d="M10 6L8.59 7.41 13.17 12l-4.58 4.59L10 18l6-6z"></path><path d="M0 0h24v24H0z" fill="none"></path></svg>
+        </div>
+      </div>
+    </div>
+    <div class="teaser" id="lazy">
+      
+      <img src="https://www.fillmurray.com/3/3" data-src="https://www.fillmurray.com/300/301">
+      <div class="teaser-content">
+        
+        <h3>Ipsum Lorem</h3>
+        <p>Lorem Ipsum is the single greatest threat. We are not - we are not keeping up with other websites. Lorem Ipsum best not make any more threats to your website.</p>
+        <div class="link">
+          <p>Lorem or not lorem</p>
+          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path d="M10 6L8.59 7.41 13.17 12l-4.58 4.59L10 18l6-6z"></path><path d="M0 0h24v24H0z" fill="none"></path></svg>
+        </div>
+      </div>
+    </div>
+    <div class="teaser" id="lazy">
+      
+      <img src="https://www.fillmurray.com/3/3" data-src="https://www.fillmurray.com/299/300">    <div class="teaser-content">
+        
+        <h3>This gets lorem</h3>
+        <p>Lorem Ipsum is the single greatest threat. We are not - we are not keeping up with other websites. Lorem Ipsum best not make any more threats to your website.</p>
+        <div class="link">
+          <p>just lorem</p>
+          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path d="M10 6L8.59 7.41 13.17 12l-4.58 4.59L10 18l6-6z"></path><path d="M0 0h24v24H0z" fill="none"></path></svg>
+        </div>
+      </div>
+    </div>
+    <div class="teaser" id="lazy">
+      
+      <img src="https://www.fillmurray.com/3/3" data-src="https://www.fillmurray.com/300/299">
+      <div class="teaser-content">
+        
+        <h3>More Lorem</h3>
+        <p>Lorem Ipsum is the single greatest threat. We are not - we are not keeping up with other websites. Lorem Ipsum best not make any more threats to your website.</p>
+        <div class="link">
+          <p>Final ipsum</p>
+          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path d="M10 6L8.59 7.41 13.17 12l-4.58 4.59L10 18l6-6z"></path><path d="M0 0h24v24H0z" fill="none"></path></svg>
+        </div>
+      </div>
+    </div>
+    
+  </section>
+      <script src="https://cpwebassets.codepen.io/assets/common/stopExecutionOnTimeout-2c7831bb44f98c1391d6a4ffda0e1fd302503391ca806e7fcc7b9b87197aec26.js"></script>
+  
+    
+        <script id="rendered-js">
+  if (!!window.IntersectionObserver) {
+    let observer = new IntersectionObserver((entries, observer) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          console.log(entry.intersectionRatio);
+          //image.src =image.dataset.src;
+          entry.target.style.opacity = 1;
+          entry.target.style.transform = "scale(1)";
+          observer.unobserve(entry.target);
+        }
+      });
+    }, { rootMargin: "0px 0px 0px 0px", threshold: 0.5 });
+    document.querySelectorAll('#lazy').forEach(lazy => {observer.observe(lazy);});
+  
+    let observer2 = new IntersectionObserver((entries, observer2) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          console.log(entry.intersectionRatio);
+          entry.target.src = entry.target.dataset.src;
+          entry.target.style.transform = "scale(1)";
+          observer2.unobserve(entry.target);
+        }
+      });
+    }, { rootMargin: "0px 0px 200px 0px", threshold: 0 });
+    document.querySelectorAll('img').forEach(image => {observer2.observe(image);});
+  
+  } else
+  
+  document.querySelector('#warning').style.display = 'block';
+  //# sourceURL=pen.js
+      </script>
+  
+    
+  
+  
+  
+  
+   
+  </body></html>
