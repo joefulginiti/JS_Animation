@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+    <meta charset="UTF-8">
+
+    <title>JS scroll trigger with Intersection Observer</title>
+    <link rel="stylesheet" href="./css/style.css">
+    <script src="java.js"></script> 
+    <!-- <script>
+    window.console = window.console || function(t) {};
+  </script>
+  
+    <script>
+    if (document.location.search.match(/type=embed/gi)) {
+      window.parent.postMessage("resize", "*");
+    }
+  </script> -->
+  
+  
+  </head>
+  
+  <body translate="no">
+    <h1 class="intro-text active">Hi, my name is Joe!</h1>
+  
+      <div class="scroll-reveal box left">
+          I came from left
+      </div>
+      <div class="scroll-reveal box right">
+          I came from right
+      </div>
+      <div class="scroll-reveal box top">
+          I came from top rotating
+      </div>
+      
+      <h1 class="loader">hello</h1>
+      
+      <div class="scroll-reveal box bottom">
+          I came from bottom scaled
+      </div>
+      <!-- <script src="https://cpwebassets.codepen.io/assets/common/stopExecutionOnTimeout-2c7831bb44f98c1391d6a4ffda0e1fd302503391ca806e7fcc7b9b87197aec26.js"></script>
+   -->
+    
+        <script id="rendered-js">
+  function scrollTrigger(selector, options = {}) {
+    let els = document.querySelectorAll(selector);
+    els = Array.from(els);
+    els.forEach(el => {
+      addObserver(el, options);
+    });
+  }
+  
+  function addObserver(el, options) {
+    if (!('IntersectionObserver' in window)) {
+      if (options.cb) {
+        options.cb(el);
+      } else {
+        entry.target.classList.add('active');
+      }
+      return;
+    }
+    let observer = new IntersectionObserver((entries, observer) => {//this takes a callback function which receives two arguments: the elemts list and the observer instance
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          if (options.cb) {
+            options.cb(el);
+          } else {
+            entry.target.classList.add('active');
+          }
+          observer.unobserve(entry.target);
+        }
+      });
+    }, options);
+    observer.observe(el);
+  }
+  // Example usages:
+  scrollTrigger('.intro-text');
+  
+  scrollTrigger('.scroll-reveal', {
+    rootMargin: '-200px' });
+  
+  
+  scrollTrigger('.loader', {
+    rootMargin: '-200px',
+    cb: function (el) {
+      el.innerText = 'Loading...';
+      setTimeout(() => {
+        el.innerText = 'Task Complete!';
+      }, 1000);
+    } });
+  //# sourceURL=pen.js
+      </script>
+  </body>
+  </html>
+    
+  
+  
+  
+  
+   
+  </body></html>
+    
